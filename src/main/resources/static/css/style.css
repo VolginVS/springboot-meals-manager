@@ -1,0 +1,184 @@
+b {
+    margin-left: 200px; 
+}
+h1, h2{
+   margin-left: 300px;
+}
+
+
+div.navi{
+    vertical-align: middle;
+    background: #c7ddef;
+    border-radius: 2px;
+    padding: 10px 15px; 
+    float: left;
+    width: 300px;
+    border: 1px solid black;
+}
+div.error {
+
+    width: 600px;
+    padding: 5px 10px; 
+    margin: 50px 30px 10px 30px;  
+}
+div.add {
+    border: 1px solid black;
+    padding: 10px 10px;
+
+    width: 600px;
+    margin: 10px 600px 10px 30px;  
+
+}
+
+div.add-day-meal {
+    border: 1px solid black;
+    padding: 10px 10px;
+    width: 800px;
+    margin: 10px 500px 10px 30px;  
+
+}
+
+.food{
+    margin: 10px 10px 10px 50px;  
+}
+
+.food b{
+    font-size: 20px;
+}
+
+.food table{ 
+    border: 1px solid black;
+}
+.food th {
+    padding: 5px 5px;
+    border: 2px solid; 
+}
+.food td {
+    padding: 0px 10px;
+    vertical-align: middle;
+    border-bottom: 1px solid black;
+ 
+}
+.food td.edit {
+    padding: 0px 0px;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    text-align: center;
+    width: 50px;
+}
+
+
+
+.dish b{
+    margin-left: 0px; 
+    font-size: 20px;    
+}
+.dish{
+    margin: 10px 10px 10px 50px;  
+}
+.dish b{
+    font-size: 20px;
+}
+.dish table{ 
+    border: 1px solid black;
+}
+.dish th {
+    padding: 5px 5px;
+    border: 2px solid; 
+}
+.dish td {
+    vertical-align: top;
+    padding: 0px 10px;
+    border-bottom: 1px solid black;
+    width: 200px;
+ 
+}
+.dish td.edit {
+    padding: 0px 0px;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    vertical-align: middle;
+    text-align: center;
+    width: 50px;
+}
+
+
+
+.meal{
+    margin: 10px 10px 10px 50px;  
+}
+
+.meal b{
+    text-align: center;
+
+    font-size: 20px;
+}
+.meal table{ 
+    border: 1px solid black;
+}
+.meal th {
+    padding: 5px 5px;
+    border: 2px solid; 
+}
+
+.meal th.header {
+    padding: 5px 5px;
+    border: 2px solid; 
+    vertical-align: middle;
+    text-align: center;
+}
+
+.meal td {
+    vertical-align: top;
+    padding: 0px 10px;
+    width: 200px;
+}
+
+.meal td.edit {
+    padding: 0px 0px;
+    border-right: 1px solid black;
+    vertical-align: middle;
+    text-align: center;
+    width: 50px;
+}
+
+
+
+
+
+
+/* table {
+border-spacing: 0 10px;
+font-family: 'Open Sans', sans-serif;
+font-weight: bold;
+}
+th {
+padding: 10px 20px;
+background: #56433D;
+color: #F9C941;
+border-right: 2px solid; 
+font-size: 0.9em;
+}
+th:first-child {
+text-align: left;
+}
+th:last-child {
+border-right: none;
+}
+td {
+vertical-align: middle;
+padding: 10px;
+font-size: 14px;
+text-align: center;
+border-top: 2px solid #56433D;
+border-bottom: 2px solid #56433D;
+border-right: 2px solid #56433D;
+}
+td:first-child {
+    
+border-left: 2px solid #56433D;
+border-right: none;
+}
+td:nth-child(2){
+text-align: left;
+}  */
