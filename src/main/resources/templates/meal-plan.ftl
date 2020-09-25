@@ -59,7 +59,7 @@
     <div class="meal">
         <table border="0">
             <tr>
-                <th colspan="4" class="header"><h2>Meal plan</h2></th> 
+                <th colspan="4" class="header"><h3>Meal plan</h3></th> 
             </tr>  
             <#list dayMealList as dayMeal>
             <tr>
