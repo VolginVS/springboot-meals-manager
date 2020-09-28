@@ -23,11 +23,20 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 //import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import org.springframework.test.web.servlet.request.MockMultipartHttpServletRequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
 import ru.volginvs.springbootmealsmanager.cotroller.FoodController;
 
 @RunWith(SpringRunner.class)
@@ -53,18 +62,19 @@ public class FoodControllerIntegretedTest {
     
     @Test
     public void foodPageTest( ) throws Exception{
-        this.mockMvc.perform(get("/food"))
+        mockMvc.perform(get("/foods"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Foods")));
     }
     @Test
-    public void showFoodListTest() throws Exception{
-        mockMvc.perform(get("/food"))
+    public void shouldShowFoodListTest() throws Exception{
+        mockMvc.perform(get("/foods"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("Foods")));
-        
+                .andExpect(xpath("//div[@id='food-list']/table/tr").nodeCount(6+1));  //Проверяеn сколько выводится строк в таблице(должно выводить n+1 строка c pfujkjdrfvb)
     }
+
+    
     
 }

@@ -24,19 +24,17 @@
         <button type="submit">Добавить</button>
     </form>
 </div>
-
- 
-        <div class="food">
+        <div class="food" id='food-list'>
             <b>List of food</b>
             <table>
                 <tr>
                     <th>Наименование продукта</th>
-                    <th>Вид</td>
+                    <th>Вид</th>
                     <th colspan="2">Редактировать</th>                
      
                 </tr>
                 <#list foodList as food>
-                    <tr>
+                    <tr  data-id="${food.id}">
                         <td>${food.name}</td>
                         <td>${food.species}</td>
                         <td class="edit"><a href="${'food-'+food.id+'-edit'}">Edit</a></td>
