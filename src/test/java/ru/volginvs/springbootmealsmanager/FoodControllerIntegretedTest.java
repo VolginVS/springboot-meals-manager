@@ -75,6 +75,16 @@ public class FoodControllerIntegretedTest {
                 .andExpect(xpath("//div[@id='food-list']/table/tr").nodeCount(6+1));  //Проверяеn сколько выводится строк в таблице(должно выводить n+1 строка c pfujkjdrfvb)
     }
 
-    
+    @Test
+    public void shouldAddFoodToListTest() throws Exception{
+        MockHttpServletRequestBuilder multipart = MockMvcRequestBuilders.multipart("/foods")
+                .param("name", "pasta")
+                .param("species", "spagetti");
+
+        mockMvc.perform(multipart)
+                .andDo(print())
+                .andExpect(xpath("//div[@id='food-list']/table/tr").nodeCount(6)) 
+                .andExpect(MockMvcResultMatchers.xpath("//div[@id='food-list']/table/tr[@data-id=10]").exists()); 
+    }    
     
 }
