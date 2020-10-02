@@ -61,10 +61,7 @@ public class FoodController {
         @RequestParam String species, Map<String, Object> model){
         
         try{
-            Food food= foodService.findById(id);
-            food.setName(name);
-            food.setSpecies(species);
-            foodService.update(food);    
+            foodService.update(id, name, species);    
             return "redirect:/foods";
         } catch (Exception ex){
             model.put("errorMessage", ex.getMessage());
@@ -77,8 +74,7 @@ public class FoodController {
     public String deleteFood(
         @PathVariable Long id, Map<String, Object> model){      
         
-        Food food= foodService.findById(id);
-        foodService.delete(food);    
+        foodService.delete(id);    
         return "redirect:/foods";
     }      
 }
