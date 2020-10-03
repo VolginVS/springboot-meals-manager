@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Map;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class FoodController {
@@ -34,8 +33,7 @@ public class FoodController {
         @RequestParam String species, Map<String, Object> model){
         
         try{
-            Food food = new Food(name,  species);
-            foodService.save(food);
+            foodService.save(new Food(name,  species));
             return "redirect:/foods";        
         } catch (Exception ex){
             model.put("errorMessage", ex.getMessage());

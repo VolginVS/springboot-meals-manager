@@ -37,8 +37,7 @@ public class DishController {
         @RequestParam String dishName, Map<String, Object> model) {
         
       try{  
-        Dish dish = new Dish(dishName);
-        dishService.save(dish);
+        dishService.save(new Dish(dishName));
         return "redirect:/dishes";
       } catch(Exception ex){
         model.put("errorMessage", ex.getMessage());
@@ -52,8 +51,8 @@ public class DishController {
     public String deleteDish(
         @PathVariable Long id, Map<String, Object> model){
         
-        Dish dish= dishService.findById(id);
-        dishService.delete(dish);    
+        // сделать try/catch проверку на предмет наличия  idшника
+        dishService.delete(id);    
         return "redirect:/dishes";
     }       
     @GetMapping(value = {"/dish-{id}-edit"})
@@ -61,8 +60,9 @@ public class DishController {
             @PathVariable Long id,
             Map<String, Object> model) {
         
-        List<DishIngredient> dishIngredientList = dishIngredientService.findAllByDish(dishService.findById(id));
+        List<DishIngredient> dishIngredientList = dishIngredientService.findAllByDishId(id);
         List<Food> foodList = foodService.findAll();
+        
         model.put("dish", dishService.findById(id));
         model.put("dishIngredientList", dishIngredientList);
         model.put("foodList", foodList);        
@@ -74,17 +74,14 @@ public class DishController {
         @RequestParam Long foodId,  
         @RequestParam Long servingWeight, Map<String, Object> model){
         
-        Dish dish = dishService.findById(id);
-        try{
-        DishIngredient dishIngredient = new DishIngredient(dish, foodService.findById(foodId), servingWeight);  
-        dishIngredientService.save(dishIngredient);
-        dish.addDishIngredient(dishIngredient);
+        try{  
+        dishIngredientService.save(new DishIngredient(dishService.findById(id), foodService.findById(foodId), servingWeight));
         return "redirect:/dish-{id}-edit";
         }catch(Exception ex){
             model.put("errorMessage", ex.getMessage());
-            List<DishIngredient> dishIngredientList = dishIngredientService.findAllByDish(dish);
+            List<DishIngredient> dishIngredientList = dishIngredientService.findAllByDishId(id);
             List<Food> foodList = foodService.findAll();
-            model.put("dish", dish);            
+            model.put("dish", dishService.findById(id));            
             model.put("dishIngredientList", dishIngredientList);
             model.put("foodList", foodList); 
             return "dish-edit";
@@ -94,17 +91,15 @@ public class DishController {
     public String updateDishName(
         @PathVariable Long id, 
         @RequestParam String dishName, Map<String, Object> model){
-        
-        Dish dish = dishService.findById(id);   
+          
         try{ 
-            dish.setName(dishName);
-            dishService.update(dish);
+            dishService.update(id, dishName);
             return "redirect:/dish-{id}-edit";
         } catch (Exception ex){
             model.put("errorMessage", ex.getMessage());
-            List<DishIngredient> dishIngredientList = dishIngredientService.findAllByDish(dish);
+            List<DishIngredient> dishIngredientList = dishIngredientService.findAllByDishId(id);
             List<Food> foodList = foodService.findAll();
-            model.put("dish", dish);            
+            model.put("dish", dishService.findById(id));            
             model.put("dishIngredientList", dishIngredientList);
             model.put("foodList", foodList);        
             return "dish-edit";
@@ -118,19 +113,14 @@ public class DishController {
         @RequestParam Long foodId,       
         @RequestParam Long servingWeight, Map<String, Object> model){
 
-        Dish dish = dishService.findById(id);        
         try{ 
-            DishIngredient dishIngredient =dishIngredientService.findById(dishIngredientId);
-            dishIngredient.setServingWeight(servingWeight);
-            dishIngredient.setFood(foodService.findById(foodId));
-            dishIngredientService.update(dishIngredient);
-            dish.addDishIngredient(dishIngredient);
+            dishIngredientService.update(dishIngredientId,foodId, servingWeight);
             return "redirect:/dish-{id}-edit";
         } catch (Exception ex){
             model.put("errorMessage", ex.getMessage());
-            List<DishIngredient> dishIngredientList = dishIngredientService.findAllByDish(dish);
+            List<DishIngredient> dishIngredientList = dishIngredientService.findAllByDishId(id);
             List<Food> foodList = foodService.findAll();
-            model.put("dish", dish);            
+            model.put("dish", dishService.findById(id));            
             model.put("dishIngredientList", dishIngredientList);
             model.put("foodList", foodList);        
             return "dish-edit";

@@ -21,14 +21,16 @@ public class DishService {
     private boolean existsById(Long id) {
         return dishRepo.existsById(id);
     }
+    
     private boolean existsByName(String name ) {
         return dishRepo.existsByName(name);
-    }    
+    } 
+    
     public Dish findById(Long id){
         return dishRepo.findById(id).orElse(null);
     }
+    
     public Dish findByName(String name) {
-        //return dishRepo.findByName(name);
         return name!=null? dishRepo.findByName(name): null;
     }
 
@@ -38,31 +40,31 @@ public class DishService {
         return dishList;
     }
     
-    //public List<Dish> findAllByName(String name) {
-    //    List<Dish> dishList = new ArrayList<>();
-    //    dishList=dishRepo.findAllByName(name);
-    //    return dishList;
-    //}
-    
-    public void delete(Dish dish){
+    public Dish delete(Long id){
+        Dish dish= findById(id);
         dishRepo.delete(dish);
+        return dish;
     }
     public void deleteByName(String name)  {
                   
         dishRepo.deleteByName(name);
-    }        
+    } 
+    
     public Dish save(Dish dish) throws Exception {
         if (StringUtils.isEmpty(dish.getName())) {
             throw new Exception("Dish's name is required");
         } 
     
         if (existsByName(dish.getName())) { 
-            throw new Exception("Dish with name: '" + dish.getName()+"' is already exists");
+            throw new Exception("Dish with name: '" + dish.getName()+ "' is already exists");
         }             
         return dishRepo.save(dish);
     }  
     
-    public void update(Dish dish) throws Exception{
+    public Dish update(Long id, String name) throws Exception{
+        Dish dish = findById(id);   
+        dish.setName(name);
+        
         if (StringUtils.isEmpty(dish.getName())) {
             throw new Exception("Dish's name is required");
         } 
@@ -70,11 +72,6 @@ public class DishService {
         if (existsByName(dish.getName()) && findByName(dish.getName()).getId()!=dish.getId()) { 
             throw new Exception("Dish with name: '" + dish.getName()+"' is already exists");
         }                     
-        dishRepo.save(dish);
-    }    
-    
-
-
-
-    
+        return dishRepo.save(dish);
+    }        
 }
