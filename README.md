@@ -16,7 +16,9 @@ How to use
 ----------
 Download package and use Maven to deploy it on http://localhost:8080/
 
-![alt text](Project-tree.png)
+Project tree
+----------
+![alt text](project-tree.png "Project tree")
 
 
 
