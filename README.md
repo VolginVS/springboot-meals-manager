@@ -14,9 +14,8 @@ Used stack of technologies: <br/>
 
 How to use
 ----------
-At first you need to enter food for dishes. For this use "Food page". <br/>
-Next you need to create dishes. For this use "Dish page".<br/>
-Finally you can set meals on dates you need. For this use "Meal plan page".<br/>
+Download package and use Maven to deploy it on http://localhost:8080/
+
 
 
 
