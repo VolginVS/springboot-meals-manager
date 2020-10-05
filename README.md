@@ -1,4 +1,4 @@
-# springboot-meals-manager
+# Application for meals management
 <div>
     <h1><b>Hello, Guest!</b></h1>
     <p>This is application for meals management</p>
