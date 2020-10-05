@@ -1,6 +1,6 @@
 # Application for meals management
 <div>
-    <b>Hello, Guest!</b>
+    <p>Hello, Guest!</p>
     <p>This is application for meals management</p>
     <p>The application is under development, however some features have already been implemented.</p> 
     <p>At first you need to enter food for dishes. For this use "Food page" 
