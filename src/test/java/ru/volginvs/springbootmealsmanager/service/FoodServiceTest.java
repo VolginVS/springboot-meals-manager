@@ -33,7 +33,7 @@ public class FoodServiceTest {
     private FoodRepo foodRepo;
      
     @Test
-    public void testSave() throws Exception {
+    public void testSaveFood() throws Exception {
         Food food = new Food("Pasta", "Spagetti");
         
         when(foodRepo.save(food)).thenReturn(food);
@@ -64,7 +64,7 @@ public class FoodServiceTest {
     }
 
     @Test
-    public void testDelete() {
+    public void testDeleteFood() {
         Food food = new Food("Pasta", "Spagetti"); 
         Long id = (long)1;
         
@@ -79,11 +79,11 @@ public class FoodServiceTest {
     }        
 
     @Test
-    public void testFindById() { 
+    public void testFindFoodById() { 
         Food food = new Food("Pasta", "Spagetti"); 
         Long id = (long)1;
         
-        when(foodRepo.findById((long)1)).thenReturn(Optional.of(food));
+        when(foodRepo.findById(id)).thenReturn(Optional.of(food));
         
         Food foodFinded = foodService.findById(id);
         
@@ -93,7 +93,7 @@ public class FoodServiceTest {
     }
     
     @Test
-    public void testFindAll() {
+    public void testFindAllFoods() {
         List<Food> foodList= new ArrayList<>();
         
         foodList.add(new Food("Pasta", "Spagetti"));

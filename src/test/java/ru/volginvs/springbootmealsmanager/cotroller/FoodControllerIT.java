@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ru.volginvs.springbootmealsmanager;
+package ru.volginvs.springbootmealsmanager.cotroller;
 
 
 
@@ -45,7 +45,7 @@ import ru.volginvs.springbootmealsmanager.cotroller.FoodController;
 @TestPropertySource("/application-test.properties")
 @Sql(value={"/create-food-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(value=("/create-food-after.sql"), executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-public class FoodControllerIntegretedTest {
+public class FoodControllerIT {
   
     
     @Autowired

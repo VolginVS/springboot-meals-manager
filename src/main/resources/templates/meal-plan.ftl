@@ -15,32 +15,31 @@
     <b>Add new day</b>
     <form method="post">
         <input type="date" name="stringDate" placeholder="Date" min="01-01-2020" required>
-        <select name="breakfastName">
+        <select name="breakfastDishId">
             <option label='---Choose breakfast---'> </option>
             <#list dishList as dish>
-                <#assign ggg=breakfastNameValueBeforeError?? && (dish.name==breakfastNameValueBeforeError)>
-            <option  ${(breakfastNameValueBeforeError?? && dish.name==breakfastNameValueBeforeError)?then('selected','')}>
-                ${dish.name}
+            <option label='${dish.name}'  ${(breakfastDishIdValueBeforeError?? && dish.id==breakfastDishIdValueBeforeError)?then('selected','')}>
+                ${dish.id}
             </option>  
             <#else>
                   No choise           
             </#list>
         </select>
-        <select name="dinnerName">
+        <select name="dinnerDishId">
             <option label="---Choose dinner---"></option>
            <#list dishList as dish>
-           <option  ${(dinnerNameValueBeforeError?? && dish.name==dinnerNameValueBeforeError)?then('selected','')}>
-                ${dish.name}
+           <option label='${dish.name}' ${(dinnerDishIdValueBeforeError?? && dish.id==dinnerDishIdValueBeforeError)?then('selected','')}>
+                ${dish.id}
             </option>  
             <#else>
                 No choise           
             </#list>
         </select>
-        <select name="supperName">
+        <select name="supperDishId">
             <option label="---Choose supper---"></option>
             <#list dishList as dish>
-            <option  ${(supperNameValueBeforeError?? && dish.name==supperNameValueBeforeError)?then('selected','')}>
-                ${dish.name}
+            <option label='${dish.name}' ${(supperDishIdValueBeforeError?? && dish.id==supperDishIdValueBeforeError)?then('selected','')}>
+                ${dish.id}
             </option>             
             <#else>
                   No choise

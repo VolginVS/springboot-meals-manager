@@ -10,7 +10,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface DishIngredientRepo extends CrudRepository<DishIngredient, Long> {
    
-    public void delete(DishIngredient dishIngredient);  
+    public void delete(DishIngredient dishIngredient); 
     public boolean existsByDishAndFood(Dish dish, Food food);    
     public boolean existsByFood(Food food);
     public List<DishIngredient> findAll(Sort sort);
@@ -18,6 +18,7 @@ public interface DishIngredientRepo extends CrudRepository<DishIngredient, Long>
     public DishIngredient findByDishAndFood(Dish dish, Food food);    
     public DishIngredient findByFood(Food food);
     public DishIngredient findByFoodAndServingWeight(Food food, Long servingWeight);    
+    
 
 
 

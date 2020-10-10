@@ -35,33 +35,25 @@ public class DayMealController {
         model.put("dishList", dishList);       
         return "meal-plan";
     }     
+    
     @GetMapping(value = {"/meal-plan-{id}-delete"})
     public String deleteDayMeal(
         @PathVariable Long id, Map<String, Object> model){
         
-        DayMeal dayMeal= dayMealService.findById(id);
-        dayMealService.delete(dayMeal);    
+        dayMealService.delete(id);    
         return "redirect:/meal-plan";
     }     
     
     @PostMapping("/meal-plan")
     public String addDayMeal(           
         @RequestParam String stringDate, 
-        @RequestParam String breakfastName,
-        @RequestParam String dinnerName,        
-        @RequestParam String supperName, Map<String, Object> model) {
+        @RequestParam Long breakfastDishId,
+        @RequestParam Long dinnerDishId,        
+        @RequestParam Long supperDishId, Map<String, Object> model) {
         
         try{ 
             LocalDate date = LocalDate.parse(stringDate);
-            Dish breakfast=dishService.findByName(breakfastName);
-            Dish dinner=dishService.findByName(dinnerName);
-            Dish supper=dishService.findByName(supperName);         
-
-            DayMeal dayMeal = new DayMeal(date,breakfast,dinner,supper);
-            
-            dayMealService.save(dayMeal);
-            List<DayMeal> dayMealList = dayMealService.findAll();
-            model.put("dayMealList", dayMealList);
+            dayMealService.save(new DayMeal(date,dishService.findById(breakfastDishId),dishService.findById(dinnerDishId),dishService.findById(supperDishId)));
             return "redirect:/meal-plan";
         }catch(Exception ex){
             String errorMessage = ex.getMessage();            
@@ -70,9 +62,9 @@ public class DayMealController {
             model.put("dayMealList", dayMealList);
             List<Dish> dishList = dishService.findAll();
             model.put("stringDateValueBeforeError",stringDate);           
-            model.put("breakfastNameValueBeforeError",breakfastName);
-            model.put("dinnerNameValueBeforeError",dinnerName);            
-            model.put("supperNameValueBeforeError",supperName);            
+            model.put("breakfastDishIdValueBeforeError",breakfastDishId);
+            model.put("dinnerDishIdValueBeforeError",dinnerDishId);            
+            model.put("supperDishIdValueBeforeError",supperDishId);            
             model.put("dishList", dishList);            
             return "meal-plan";
         }
@@ -91,16 +83,16 @@ public class DayMealController {
     @PostMapping(value = {"/day-meal-{stringDate}"})
     public String updateDayMeal(
         @PathVariable String stringDate,      
-        @RequestParam String breakfastName,    
-        @RequestParam String dinnerName,
-        @RequestParam String supperName, Map<String, Object> model){
+        @RequestParam Long breakfastDishId,    
+        @RequestParam Long dinnerDishId,
+        @RequestParam Long supperDishId, Map<String, Object> model){
         
         LocalDate mealDate = LocalDate.parse(stringDate);      
-        DayMeal dayMeal = dayMealService.findByDate(mealDate);
-        dayMeal.setBreakfast(dishService.findByName(breakfastName));
-        dayMeal.setDinner(dishService.findByName(dinnerName));
-        dayMeal.setSupper(dishService.findByName(supperName));
-        dayMealService.update(dayMeal);      
+        /*DayMeal dayMeal = dayMealService.findByDate(mealDate);
+        dayMeal.setBreakfast(dishService.findById(breakfastDishId));
+        dayMeal.setDinner(dishService.findById(dinnerDishId));
+        dayMeal.setSupper(dishService.findById(supperDishId));*/
+        dayMealService.update(mealDate,breakfastDishId,dinnerDishId,supperDishId);      
         return "redirect:meal-plan";
     }     
 

@@ -21,6 +21,9 @@ public class DayMealService {
     @Autowired
     DayMealRepo dayMealRepo;
     
+    @Autowired
+    DishService dishService;
+    
     private boolean existsById(Long id){
         return dayMealRepo.existsById(id);
     }
@@ -62,11 +65,13 @@ public class DayMealService {
         
         return dayMealRepo.save(meal);
     }  
-    
-    public void update(DayMeal meal) {
-        
-        //?????????????? Надо ли делать эксепшионы
-        dayMealRepo.save(meal);
+  
+    public void update(LocalDate date, Long breakfastDishId, Long dinnerDishId, Long supperDishId) {
+        DayMeal dayMeal = findByDate(date);
+        dayMeal.setBreakfast(dishService.findById(breakfastDishId));
+        dayMeal.setDinner(dishService.findById(dinnerDishId));
+        dayMeal.setSupper(dishService.findById(supperDishId));   
+        dayMealRepo.save(dayMeal);
     }    
     
     public void deleteByDate(LocalDate date)  {
@@ -77,8 +82,9 @@ public class DayMealService {
         return dayMealRepo.findByDate(date);
     }
 
-    public void delete(DayMeal meal)  {
-         dayMealRepo.delete(meal);
+    public void delete(Long id)  {
+        DayMeal meal= findById(id);   
+        dayMealRepo.delete(meal);
     } 
 
 }

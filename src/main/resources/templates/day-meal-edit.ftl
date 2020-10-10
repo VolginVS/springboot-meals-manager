@@ -23,11 +23,11 @@
         </tr>
         <tr>
             <td> 
-            <select name="breakfastName">
-                <option label="${'---'+dayMeal.breakfast.name+'---'}">${dayMeal.breakfast.name}</option>
+            <select name="breakfastDishId">
+                <option label="${'---'+dayMeal.breakfast.name+'---'}">${dayMeal.breakfast.id}</option>
                 <#list dishList as dish>
-                <option>
-                    ${dish.name}
+                <option label="${dish.name}">
+                    ${dish.id}
                 </option>
                 <#else>
                     No choise
@@ -35,11 +35,11 @@
             </select> 
             </td> 
             <td> 
-            <select name="dinnerName" >
-                <option label= "${'---'+dayMeal.dinner.name+'---'}">${dayMeal.dinner.name}</option>
+            <select name="dinnerDishId" >
+                <option label= "${'---'+dayMeal.dinner.name+'---'}">${dayMeal.dinner.id}</option>
                 <#list dishList as dish>
-                <option>
-                    ${dish.name}
+                <option label="${dish.name}">
+                    ${dish.id}
                 </option>
                 <#else>
                       No choise
@@ -47,11 +47,11 @@
             </select> 
             </td>
             <td> 
-            <select name="supperName">
-                <option label="${'---'+dayMeal.supper.name+'---'}">${dayMeal.supper.name}</option>
+            <select name="supperDishId">
+                <option label="${'---'+dayMeal.supper.name+'---'}">${dayMeal.supper.id}</option>
                 <#list dishList as dish>
-                <option>
-                     ${dish.name}
+                <option label="${dish.name}">
+                     ${dish.id}
                 </option>
                 <#else>
                       No choise

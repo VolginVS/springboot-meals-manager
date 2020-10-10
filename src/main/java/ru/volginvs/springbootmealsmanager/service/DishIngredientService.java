@@ -32,7 +32,7 @@ public class DishIngredientService {
     
     public DishIngredient findById(Long id){
         return dishIngredientRepo.findById(id).orElse(null);
-    };   
+    }
     public boolean existsByDishAndFood(Dish dish, Food food){
         return dishIngredientRepo.existsByDishAndFood(dish, food);
     }
@@ -70,7 +70,7 @@ public class DishIngredientService {
     
     public DishIngredient update(Long dishIngredientId, Long foodId, Long servingWeight) throws Exception{
         
-        DishIngredient dishIngredient =findById(dishIngredientId);
+        DishIngredient dishIngredient = findById(dishIngredientId);
         Dish dish = dishService.findById(dishIngredient.getDish().getId());
         
         if (foodId==null || foodService.findById(foodId)==null) {
@@ -92,8 +92,10 @@ public class DishIngredientService {
         return dishIngredientRepo.save(dishIngredient);
     }
     
-    public void delete(DishIngredient dishIngredient){
-         dishIngredientRepo.delete(dishIngredient);
+    public DishIngredient delete(Long id){
+        DishIngredient dishIngredient = findById(id);
+        dishIngredientRepo.delete(dishIngredient);
+        return dishIngredient;
     }
 
     public DishIngredient findByFoodAndServingWeight(Food food, Long servingWeight){

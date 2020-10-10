@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest    
 @AutoConfigureMockMvc
-public class MainControllerTest {
+public class MainControllerIT {
    
     @Autowired
     private MockMvc mockMvc;
@@ -32,7 +32,6 @@ public class MainControllerTest {
     @Autowired
     private MainController controller;
     
-    //Проверка наличия 
     @Test
     public void test() throws Exception{
 	assertThat(controller).isNotNull();

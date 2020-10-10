@@ -131,7 +131,7 @@ public class DishController {
         @PathVariable Long id,            
         @PathVariable Long dishIngredientId, Map<String, Object> model){
                
-        dishIngredientService.delete(dishIngredientService.findById(dishIngredientId));    
+        dishIngredientService.delete(dishIngredientId);    
         return "redirect:/dish-{id}-edit";
     }           
 }
